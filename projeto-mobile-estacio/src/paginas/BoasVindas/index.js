@@ -23,7 +23,7 @@ export default function BoasVindas(){
 
                 <TouchableOpacity 
                 style={styles.button}
-                onPress={ () => navigation.navigate("Registro")}
+                onPress={ () => navigation.navigate("Login")}
                 >
                     <Text style={styles.buttonText}>Acessar</Text>
                 </TouchableOpacity>
@@ -31,7 +31,7 @@ export default function BoasVindas(){
             </View>
             <View style={styles.containerLogo}>
                 <Image
-                source={require('../../assets/baterias.jpg')}
+                source={require('../../assets/bateriasauto.png')}
                 style={{width: '50%'}}
                 resizeMode="contain"
                 />
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     },
     button:{
         position: 'absolute',   
-        backgroundColor:'#000',
+        backgroundColor:'#38a69d',
         borderRadius: 50,
         width: '40%',
         alignSelf: 'center',

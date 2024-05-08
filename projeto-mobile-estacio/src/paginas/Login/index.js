@@ -1,7 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
-export default function Registro(){
+export default function Login(){
+    const navigation = useNavigation();
+
     return(
         <View style={styles.container}>
             <View>
@@ -20,11 +23,17 @@ export default function Registro(){
                 style={styles.input}
             />
 
-            <TouchableOpacity style={styles.buttonLogon}>
+            <TouchableOpacity style={styles.buttonLogon}
+                onPress={() => navigation.navigate("Principal")}
+            >
                 <Text style={styles.buttonTextLogon}>Logar-se</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonRegistrar}>
+            <TouchableOpacity style={styles.buttonRegistrar}
+                onPress={ () => navigation.navigate("Cadastro")}
+
+            >
+                
                 <Text style={styles.buttonTextRegistrar}>Não possui conta? Registre-se</Text>
             </TouchableOpacity>
 
