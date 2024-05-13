@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import BoasVindas from '../paginas/BoasVindas'
-import Login from '../paginas/Login'
+import BoasVindas from '../paginas/BoasVindas';
+import Login from '../paginas/Login';
 import Cadastro from '../paginas/Cadastro';
 import Principal from '../paginas/Principal';
 
@@ -18,13 +18,6 @@ export default function Rotas(){
 
 
             <Stack.Screen
-                name="Login"
-                component={Login}
-                options={{headerShown: false}}
-            />
-
-
-            <Stack.Screen
                 name="Cadastro"
                 component={Cadastro}
                 options={{headerShown: false}}
@@ -34,6 +27,12 @@ export default function Rotas(){
             <Stack.Screen
                 name="Principal"
                 component={Principal}
+                options={{headerShown: false}}
+            />
+
+            <Stack.Screen
+                name="Login"
+                component={Login}
                 options={{headerShown: false}}
             />
 

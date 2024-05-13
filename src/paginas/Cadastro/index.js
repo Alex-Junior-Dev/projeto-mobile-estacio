@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-nativ
 
 
 export default function Cadastro({navigation}){
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,7 +14,7 @@ export default function Cadastro({navigation}){
             alert('Cadastro criado com sucesso')
             navigation.navigate('Login')
         }else {
-            alert('Ops! algo errado')
+            alert('Preencha os campos corretamente para realizar o cadastro!')
         }
     }
     return(

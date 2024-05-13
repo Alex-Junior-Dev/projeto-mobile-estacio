@@ -1,9 +1,21 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity} from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import { useState } from "react";
 
 export default function Login(){
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    function identificarLogin(){
+        if(email && password !== ''){
+            navigation.navigate('Principal')
+        }else {
+            alert('Informe corretamente o email e a senha para logar-se!')
+        }
+    }
 
     return(
         <View style={styles.container}>
@@ -14,17 +26,27 @@ export default function Login(){
         <View style={styles.containerForm}>
             <Text>Email</Text>
             <TextInput
+            autoCompleteType='email' 
+            autoCapitalize='none' 
+            autoCorrect={false}
             placeholder="Informe seu email"
             style={styles.input}
+            onChangeText={(event) => setEmail(event)}
             />
+
             <Text>Senha</Text>
             <TextInput
                 placeholder="Informe sua senha"
+                autoCompleteType='password' 
+                autoCapitalize='none'
+                autoCorrect={false}
                 style={styles.input}
+                onChangeText={(event) => setPassword(event)}
             />
 
             <TouchableOpacity style={styles.buttonLogon}
-                onPress={() => navigation.navigate("Principal")}
+                onPress={identificarLogin}
+                //onPress={() => navigation.navigate("Principal")}
             >
                 <Text style={styles.buttonTextLogon}>Logar-se</Text>
             </TouchableOpacity>
