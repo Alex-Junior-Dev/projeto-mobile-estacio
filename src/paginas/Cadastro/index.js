@@ -1,50 +1,73 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-export default function Cadastro({navigation}){
+export default function Cadastro({ navigation }) {
     
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
-    function identificarCadastro(){
-        if(name && email && password !== '' && password === passwordConfirm){
-            alert('Cadastro criado com sucesso')
-            navigation.navigate('Login')
-        }else {
-            alert('Preencha os campos corretamente para realizar o cadastro!')
+    async function identificarCadastro() {
+        if (name && email && password !== '' && password === passwordConfirm) {
+
+            try {
+                await AsyncStorage.setItem('userData', JSON.stringify({ name, email, password }));
+                alert('Cadastro criado com sucesso');
+                navigation.navigate('Login');
+            } catch (error) {
+                console.error('Erro ao salvar o cadastro:', error);
+                alert('Ocorreu um erro ao criar o cadastro. Por favor, tente novamente.');
+            }
+        } else {
+            alert('Preencha os campos corretamente para realizar o cadastro!');
         }
     }
-    return(
+
+    return (
         <View style={styles.Container}>
             <View>
                 <Text style={styles.message}>Cadastre-se</Text>
             </View>
-            <View style={styles.containerForm} >
-                <TextInput style={styles.inputUserName} placeholder='Nome'
-                autoCompleteType='username' autoCapitalize='none'
-                placeholderTextColor='#000' autoCorrect={false}
-                onChangeText={(event) => setName(event)}
-                 />
-                <TextInput style={styles.inputForm} placeholder='Email'
-                autoCompleteType='email' autoCapitalize='none' autoCorrect={false}
-                placeholderTextColor='#000'
-                onChangeText={(event) => setEmail(event)}
-                 />
-                <TextInput style={styles.inputForm} placeholder='Senha'
-                autoCompleteType='password' autoCapitalize='none'
-                placeholderTextColor='#000' autoCorrect={false}
-                onChangeText={(event) => setPassword(event)}
-                 />
-                <TextInput style={styles.inputForm} placeholder='Confirmar senha'
-                autoCompleteType='password' autoCapitalize='none' autoCorrect={false}
-                placeholderTextColor='#000'
-                onChangeText={(event) => setPasswordConfirm(event)}
-                 />
-                <TouchableOpacity style={styles.buttonForm}
-                onPress={identificarCadastro} >
+            <View style={styles.containerForm}>
+                <TextInput
+                    style={styles.inputUserName}
+                    placeholder='Nome'
+                    autoCompleteType='username'
+                    autoCapitalize='none'
+                    placeholderTextColor='#000'
+                    autoCorrect={false}
+                    onChangeText={(event) => setName(event)}
+                />
+                <TextInput
+                    style={styles.inputForm}
+                    placeholder='Email'
+                    autoCompleteType='email'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    placeholderTextColor='#000'
+                    onChangeText={(event) => setEmail(event)}
+                />
+                <TextInput
+                    style={styles.inputForm}
+                    placeholder='Senha'
+                    autoCompleteType='password'
+                    autoCapitalize='none'
+                    placeholderTextColor='#000'
+                    autoCorrect={false}
+                    onChangeText={(event) => setPassword(event)}
+                />
+                <TextInput
+                    style={styles.inputForm}
+                    placeholder='Confirmar senha'
+                    autoCompleteType='password'
+                    autoCapitalize='none'
+                    autoCorrect={false}
+                    placeholderTextColor='#000'
+                    onChangeText={(event) => setPasswordConfirm(event)}
+                />
+                <TouchableOpacity style={styles.buttonForm} onPress={identificarCadastro}>
                     <Text style={styles.textButton}>Cadastrar</Text>
                 </TouchableOpacity>
             </View>
@@ -59,14 +82,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'red',
     },
-    message:{
+    message: {
         fontSize: 28,
         fontWeight: 'bold',
         color: "yellow",
         marginBottom: '8%',
         marginTop: '14%',
         alignSelf: 'center'
-            
     },
     containerForm: {
         flex: 1,
@@ -74,7 +96,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         alignItems: 'center',
         justifyContent: 'center'
-
     },
     inputUserName: {
         borderBottomWidth: 1,
@@ -82,7 +103,7 @@ const styles = StyleSheet.create({
         width: 250,
         height: 35,
         borderRadius: 5,
-        padding: 5,        
+        padding: 5,
     },
     inputForm: {
         borderBottomWidth: 1,
@@ -102,10 +123,9 @@ const styles = StyleSheet.create({
         marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center',
-
     },
     textButton: {
         color: '#FFF',
         fontWeight: 'bold'
     },
-})
+});
