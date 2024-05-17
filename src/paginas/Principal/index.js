@@ -8,10 +8,7 @@ export default function Inventario(){
 
   useEffect(() => {
     // Aqui você pode carregar os dados do inventário de um banco de dados ou arquivo local
-    setProdutos([
-      // Exemplo de produtos iniciais
-      { nome: 'Produto A', quantidade: 10 },
-      { nome: 'Produto B', quantidade: 5 }
+    setProdutos([    
     ]);
   }, []);
 
