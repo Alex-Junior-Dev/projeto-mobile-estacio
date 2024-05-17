@@ -40,7 +40,9 @@ export default function Login() {
                 const userData = await AsyncStorage.getItem('userData');
                 if (userData !== null) {
                     // Parse dos dados do usuário
-                    const { savedEmail, savedPassword } = JSON.parse(userData);
+                    JsonDataCustom = JSON.parse(userData);
+                    const savedEmail = JsonDataCustom["email"]
+                    const savedPassword = JsonDataCustom["password"]
                     // Verificar se o email e a senha coincidem
                     if (email === savedEmail && password === savedPassword) {
                         navigation.navigate('Principal');
